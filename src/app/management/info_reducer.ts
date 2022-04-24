@@ -1,14 +1,23 @@
 import {createReducer, on} from '@ngrx/store';
 import {Message} from '../model/message';
-import {addInfo, deleteInfo, updateInfo} from './info-actions';
+import {
+    addInfo,
+    deleteInfo,
+    updateInfo,
+    loadInfo,
+    informationLoadSuccess,
+    informationLoadFailure
+} from './info_actions';
 
 export interface InfoMessageState {
     messages: Message[];
+    error: string,
     status: 'pending' | 'loading' | 'error' | 'sucess';
 }
 
 export const initialState: InfoMessageState = {
     messages: [],
+    error: null,
     status: 'pending',
 };
 
@@ -31,4 +40,10 @@ export const informationState = createReducer(
     on(loadInfo, (state) => ({
         ...state, status: 'loading',
         })),
+    on(informationLoadSuccess, (state, {message}) => ({
+        ...state, status: 'loading',
+    })),
+    on(informationLoadFailure, (state, {error}) => ({
+        ...state, error: error,
+    })),
 );
