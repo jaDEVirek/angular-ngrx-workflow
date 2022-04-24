@@ -13,3 +13,6 @@ export const updateInfo = createAction(
   '[Information Component] Update Info',
   props<{ message: Message }>()
 );
+export const loadInfo = createAction(
+    '[Information Component] Load Info',
+);
