@@ -9,7 +9,8 @@ import {loadInfo} from "../../management/info_actions";
 })
 export class MessagesPageComponent implements OnInit {
 
-  readonly messages$;
+  readonly messages$
+  ;
   readonly message;
 
   constructor(private store: Store) { }

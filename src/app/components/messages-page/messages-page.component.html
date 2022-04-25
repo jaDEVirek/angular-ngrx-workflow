@@ -1,1 +1,12 @@
-<p>messages-page works!</p>
+<div class="page-container">
+    <h2>Basic messages with NGRX</h2>
+    <input matInput type="text" [(ngModel)]="">
+    <button mat-button color="primary" (click)="addMessage()">Add message</button>
+
+    <mat-selection-list>
+        <mat-list-option *ngFor="let message of messages$ | async"
+                         (click)="removeMessage(message)">
+            {{message.text}}
+        </mat-list-option>
+    </mat-selection-list>
+</div>
