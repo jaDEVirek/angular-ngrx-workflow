@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {loadInfo} from "../../management/info_actions";
+import {loadInfo} from "../../management/message_actions";
 
 @Component({
   selector: 'app-messages-page',
@@ -9,11 +9,12 @@ import {loadInfo} from "../../management/info_actions";
 })
 export class MessagesPageComponent implements OnInit {
 
-  readonly messages$
-  ;
+  readonly messages$ = this.store.select(getAllMessages);
   readonly message;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+
+  }
 
   ngOnInit(): void {
       this.store.dispatch(loadInfo())

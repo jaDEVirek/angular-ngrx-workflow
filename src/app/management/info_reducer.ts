@@ -1,49 +1,49 @@
 import {createReducer, on} from '@ngrx/store';
 import {Message} from '../model/message';
 import {
-    addInfo,
-    deleteInfo,
-    updateInfo,
-    loadInfo,
-    informationLoadSuccess,
-    informationLoadFailure
-} from './info_actions';
+    addMessage,
+    deleteMessage,
+    updateMessage,
+    loadMessage,
+    messageLoadSuccess,
+    messageLoadFailure
+} from './message_actions';
 
-export interface InfoMessageState {
+export interface MessageState {
     messages: Message[];
     error: string,
     status: 'pending' | 'loading' | 'error' | 'sucess';
 }
 
-export const initialState: InfoMessageState = {
+export const initialState: MessageState = {
     messages: [],
     error: null,
     status: 'pending',
 };
 
-export const informationState = createReducer(
+export const messageInformationState = createReducer(
     initialState,
-    on(addInfo, (state, {message}) => ({
+    on(addMessage, (state, {message}) => ({
         ...state,
         messages: [...state.messages, {id: Date.now(), text: message}],
     })),
-    on(deleteInfo, (state, {key}) => ({
+    on(deleteMessage, (state, {key}) => ({
         ...state,
-        messages: state.messages.filter((info) => info.id != Number(key)),
+        messages: state.messages.filter((message) => message.id != Number(key)),
     })),
-    on(updateInfo, (state, {message}) => ({
+    on(updateMessage, (state, {message}) => ({
         ...state,
-        messages: state.messages.filter((info) => {
-            if (info.id == Number(message.id)) info.text = message.text;
+        messages: state.messages.filter((message) => {
+            if (message.id == Number(message.id)) message.text = message.text;
         }),
     })),
-    on(loadInfo, (state) => ({
+    on(loadMessage, (state) => ({
         ...state, status: 'loading',
         })),
-    on(informationLoadSuccess, (state, {message}) => ({
+    on(messageLoadSuccess, (state, {message}) => ({
         ...state, status: 'loading',
     })),
-    on(informationLoadFailure, (state, {error}) => ({
+    on(messageLoadFailure, (state, {error}) => ({
         ...state, error: error,
     })),
 );
