@@ -1,12 +1,19 @@
 import {createSelector} from "@ngrx/store";
-import {MessageState} from "../info_reducer";
+import {MessageState} from "../message_reducer";
 
+
+/**
+ *
+ */
+export interface MessageAppState {
+    messages: MessageState,
+}
 
 /**
  *
  * @param state
  */
-export const selectMessages= (state: MessageAppState) => state.messages;
+export const selectMessages = (state: MessageAppState) => state.messages;
 
 /**
  *

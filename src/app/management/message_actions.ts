@@ -17,5 +17,5 @@ export const loadMessage = createAction(
     '[Message Component] Load Message',
 );
 
-export const messageLoadSuccess = createAction('[Message Component] Success Load Message', props<{ message: Message }>());
-export const messageLoadFailure = createAction('[Message Component] Failure Load Message',props<{ error: string }>());
+export const messageLoadSuccess = createAction('[Message Component] Success Load Messages', props<{ messages: Message[] }>());
+export const messageLoadFailure = createAction('[Message Component] Failure Load Messages',props<{ error: string }>());
